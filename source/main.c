@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
     printf("\x1b[21;1HSTART to pause emulation");
     printf("\x1b[22;1HA to step in paused mode");
     printf("\x1b[23;1HL to show/hide diagnostics");
-    printf("\x1b[24;1X to show/hide memory (ZP)");
+    printf("\x1b[24;1HX to show/hide memory (ZP)");
     printf("\x1b[25;1HR to reset ROM");
 
     printf("\x1b[1;25H\x1b[31m%s\x1b[0m", paused ? "PAUSE" : "     ");

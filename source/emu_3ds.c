@@ -12,7 +12,7 @@ int paused = 1;
 int show_diagnostics = 1;
 int show_memory = 0;
 
-int frameskip = 63;
+int frameskip = 128;
 
 void initialize_state(){
 	clear_state(&state);
@@ -45,7 +45,7 @@ byte * read_bin(const char *filename, int* bin_file_size) {
 
 void load_bin(){
     int bin_file_size = 0;
-    byte *bin = read_bin("bins/demo01.bin", &bin_file_size);
+    byte *bin = read_bin("bins/random.bin", &bin_file_size);
    	memcpy(state.memory + PRG_START, bin, bin_file_size);
 }
 

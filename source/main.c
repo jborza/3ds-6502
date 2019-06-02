@@ -30,21 +30,6 @@ void render_memory()
     }
 }
 
-void check_input(u32 kDown)
-{
-    //hackity hack, we simulate WASD with D-pad
-    if (kDown & KEY_LEFT)
-        last_key = 'A';
-    else if (kDown & KEY_DOWN)
-        last_key = 'S';
-    else if (kDown & KEY_RIGHT)
-        last_key = 'D';
-    else if (kDown & KEY_UP)
-        last_key = 'W';
-    else
-        last_key = 0;
-}
-
 int frame = 0;
 
 int main(int argc, char *argv[])
@@ -107,15 +92,16 @@ int main(int argc, char *argv[])
             show_memory = !show_memory;
 
         //diagnostics
-        printf("\x1b[29;1HCPU:     %6.2f%%\x1b[K GPU:     %6.2f%%", C3D_GetProcessingTime() * 6.0f, C3D_GetDrawingTime() * 6.0f);
-        printf("\x1b[28;1Hframe:     %d  frameskip: %d", frame++, frameskip);
-
+        if(show_diagnostics){
+            printf("\x1b[29;1HCPU:     %6.2f%%\x1b[K GPU:     %6.2f%%", C3D_GetProcessingTime() * 6.0f, C3D_GetDrawingTime() * 6.0f);
+            printf("\x1b[28;1Hframe:     %d  frameskip: %d", frame++, frameskip);
+        }
         // Render the scene
         C3D_FrameBegin(C3D_FRAME_SYNCDRAW);
         C2D_TargetClear(top, clrClear);
         C2D_SceneBegin(top);
 
-        check_input(kDown);
+        process_direction_keys(kDown);
         if (!paused)
         {
             for(int i =0; i < frameskip; i++)

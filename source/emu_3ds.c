@@ -43,9 +43,21 @@ byte * read_bin(const char *filename, int* bin_file_size) {
 	return buffer;
 }
 
+void process_direction_keys(u32 kDown){
+    if (kDown & KEY_LEFT)
+        last_key = 'a';
+    else if (kDown & KEY_DOWN)
+        last_key = 's';
+    else if (kDown & KEY_RIGHT)
+        last_key = 'd';
+    else if (kDown & KEY_UP)
+        last_key = 'w';
+}
+
 void load_bin(){
     int bin_file_size = 0;
-    byte *bin = read_bin("bins/random.bin", &bin_file_size);
+    // byte *bin = read_bin("bins/gameoflife.bin", &bin_file_size);
+    byte *bin = read_bin("bins/snake.bin", &bin_file_size);
    	memcpy(state.memory + PRG_START, bin, bin_file_size);
 }
 

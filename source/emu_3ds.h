@@ -1,3 +1,5 @@
+#include <3ds.h>
+
 #include "state.h"
 
 #define MEMORY_SIZE 0xFFFF
@@ -20,3 +22,4 @@ void emu_tick();
 void print_state();
 void reset_pc();
 void reset_emulation();
+void process_direction_keys();
